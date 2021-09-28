@@ -1,24 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import Agregar from './views/Agregar';
+import { Container } from 'react-bootstrap';
+import { useState } from 'react';
+import Cuadrado from './component/Cuadrado';
 
 function App() {
+
+  const [cuadrados, setCuadrados] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Agregar cuadrados={cuadrados} setCuadrados={setCuadrados}/>
+      <div className="contenedor">
+      {
+        cuadrados.length > 0 && cuadrados.map((box) => (
+          <Cuadrado box={box}/>
+      ))
+      }
+      </div>
+    </Container>
   );
 }
 
